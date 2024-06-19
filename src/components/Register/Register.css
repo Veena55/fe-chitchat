@@ -1,0 +1,105 @@
+.img-cover {
+    width: 150px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+
+}
+
+
+.left-eye {
+    position: absolute;
+    top: 36px;
+    left: 44%;
+    width: 4px;
+    height: 4px;
+    background-color: black;
+    border-radius: 50%;
+    outline: 2px solid black;
+    outline-offset: 2px;
+}
+
+.left-eye,
+.right-eye {
+    /* animation: moveEyes .5s infinite; */
+}
+
+.right-eye {
+    position: absolute;
+    top: 36px;
+    right: 44%;
+    width: 4px;
+    height: 4px;
+    background-color: black;
+    border-radius: 50%;
+    outline: 2px solid black;
+    border: 1px solid black;
+    outline-offset: 2px;
+}
+
+.mouth {
+    position: absolute;
+    bottom: 50px;
+    left: 47%;
+    width: 10px;
+    height: 2px;
+    margin: auto;
+    background-color: tomato;
+    border-radius: 5px;
+}
+
+.left-hand {
+    position: absolute;
+    bottom: 10px;
+    border: 2px solid #cd9494;
+    left: 36%;
+    width: 12px;
+    height: 57px;
+    background-color: #ddada1;
+    border-radius: 50px;
+    transform: translateY(120%) rotate(20deg);
+}
+
+.right-hand {
+    position: absolute;
+    bottom: 10px;
+    border: 2px solid #cd9494;
+    right: 36%;
+    width: 12px;
+    height: 57px;
+    background-color: #ddada1;
+    border-radius: 50px;
+    transform: translateY(120%) rotate(-20deg);
+}
+
+.left-bar,
+.right-bar {
+    width: 45%;
+    height: 1px;
+    /* background: rgba(67, 67, 67, 0.599); */
+}
+
+@keyframes moveEyes {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+.pwd-cover {
+    position: relative;
+}
+
+.eye-open,
+.eye-close {
+    position: absolute;
+    top: 25%;
+    right: 5%;
+}
+
+.eye-close {
+    /* display: none; */
+}
