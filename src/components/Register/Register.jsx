@@ -34,7 +34,7 @@ const Register = () => {
         });
     }
     useEffect(() => {
-        const input = document.querySelectorAll('input[type="password"],input[type="text"]');
+        const input = document.querySelectorAll('.password');
         if (eyeFlag) {
             showHands();
             if (input.length > 0) { // Check if there are any password inputs
@@ -67,7 +67,7 @@ const Register = () => {
                     <p className='fw-semibold mt-2'>Already have an account? <a href='#' className='text-primary'>Sign In</a> here</p>
                 </div>
                 <div className='mt-4'>
-                    <button className='btn form-control p-2 bg-white border rounded-5 shadow-sm d-flex  justify-content-center align-items-center gap-3 text-capitalize fs-6'><FcGoogle size={20} /> Register With Google</button>
+                    <button className='btn form-control p-2 bg-white border rounded-5 shadow-sm d-flex justify-content-center align-items-center gap-3 text-capitalize fs-6'><FcGoogle size={20} /> Register With Google</button>
                 </div>
                 <div className="d-flex gap-2 align-items-center my-3">
                     <div className='left-bar border'></div>
@@ -75,14 +75,14 @@ const Register = () => {
                     <div className='right-bar border'></div>
                 </div>
                 <form>
-                    <div className="form-group">
-                        <input type="text" className="form-control px-4 py-2 rounded-5 bg-light" placeholder='Name' />
+                    <div className="form-group mt-3">
+                        <input type="text" className="form-control px-4 py-2 rounded-5 bg-light" placeholder='Username' />
                     </div>
                     <div className="form-group mt-3">
                         <input type="email" className="form-control px-4 py-2 rounded-5 bg-light" placeholder='Email' />
                     </div>
                     <div className="form-group mt-3 pwd-cover">
-                        <input type="password" className="form-control px-4 py-2 rounded-5 bg-light" placeholder='Password' onFocus={showHands} onBlur={hideHands} />
+                        <input type="password" className="form-control px-4 py-2 rounded-5 bg-light password" placeholder='Password' onFocus={showHands} onBlur={hideHands} />
                         {eyeFlag && <FaEye className='eye-open' onClick={() => setEyeFlag(!eyeFlag)} />}
                         {!eyeFlag && <GoEyeClosed className='eye-close' onClick={() => setEyeFlag(!eyeFlag)} />}
                     </div>
