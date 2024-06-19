@@ -8,7 +8,6 @@ import { GoEyeClosed } from 'react-icons/go';
 
 const Login = () => {
     const [eyeFlag, setEyeFlag] = useState(false);
-    const [handFlag, setHandFlag] = useState(false);
 
     const showHands = () => {
         gsap.to('.left-hand', {
@@ -37,7 +36,7 @@ const Login = () => {
     useEffect(() => {
         const input = document.querySelectorAll('input[type="password"],input[type="text"]');
         if (eyeFlag) {
-            hideHands();
+            showHands();
             if (input.length > 0) { // Check if there are any password inputs
                 input[0].setAttribute('type', 'text'); // Change the type of the first password input to text
             }
@@ -47,7 +46,7 @@ const Login = () => {
             } else {
                 console.log("No password");
             }
-            showHands();
+            hideHands();
         }
     }, [eyeFlag]);
 
