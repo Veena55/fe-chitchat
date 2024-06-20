@@ -48,28 +48,29 @@
     border-radius: 5px;
 }
 
-.left-hand {
+.left-hand,
+.right-hand {
     position: absolute;
-    bottom: 10px;
     border: 2px solid #cd9494;
-    left: 36%;
-    width: 12px;
-    height: 57px;
     background-color: #ddada1;
     border-radius: 50px;
-    transform: translateY(120%) rotate(20deg);
+    width: 12px;
+    height: 57px;
+    bottom: 11px;
+    transform-origin: bottom;
+    visibility: hidden;
+    /* opacity: 0; */
+}
+
+.left-hand {
+    left: 30%;
+    transform: rotate(20deg);
 }
 
 .right-hand {
+    right: 30%;
     position: absolute;
-    bottom: 10px;
-    border: 2px solid #cd9494;
-    right: 36%;
-    width: 12px;
-    height: 57px;
-    background-color: #ddada1;
-    border-radius: 50px;
-    transform: translateY(120%) rotate(-20deg);
+    transform: rotate(-20deg);
 }
 
 .left-bar,

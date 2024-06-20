@@ -1,9 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
+[data-theme="light"] {
+  --color-bg: #ffffff;
+  /* --color-fg: #3b71ca; */
+  --color-input-bg: unset;
+  --color-input-fg: unset
+}
+
+[data-theme="dark"] {
+  --color-bg: #000000;
+  --color-fg: #ffffff;
+  --color-input-bg: transparent;
+  --color-input-fg: #3b71ca;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: "Outfit", sans-serif !important;
+  background-color: var(--color-bg) !important;
+  color: var(--color-fg) !important;
+}
+
+input {
+  background-color: var(--color-input-bg) !important;
+  color: var(--color-input-fg) !important;
 }
 
 h1 {

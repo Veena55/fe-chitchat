@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import gsap from 'gsap';
 import assets from '../../assets/assets';
 import { FcGoogle } from 'react-icons/fc';
@@ -10,43 +10,46 @@ const Register = () => {
     const [eyeFlag, setEyeFlag] = useState(false);
 
     const showHands = () => {
-        gsap.to('.left-hand', {
-            y: 0,
-            transform: 'rotate(20deg)',
-            display: "block"
-        });
-        gsap.to('.right-hand', {
-            y: 0,
-            transform: 'rotate(-20deg)',
-            display: "block"
-        });
+        const input = document.querySelectorAll('.password');
+        if (input[0].attributes['type'].value == 'text' || document.activeElement.classList.contains('password')) {
+            gsap.to('.left-hand', {
+                transform: 'rotate(20deg)',
+                visibility: 'visible',
+                duration: 0.5,
+            });
+            gsap.to('.right-hand', {
+                transform: 'rotate(-20deg)',
+                visibility: 'visible',
+                duration: 0.5,
+            });
+        }
     }
     const hideHands = () => {
-        gsap.to('.left-hand', {
-            display: 'none',
-            y: 120,
-            transform: 'rotate(20deg)',
-        });
-        gsap.to('.right-hand', {
-            display: 'none',
-            y: 120,
-            transform: 'rotate(-20deg)',
-        });
+        const input = document.querySelectorAll('.password');
+        if (input[0].attributes['type'].value == 'password' && !document.activeElement.classList.contains('password')) {
+            gsap.to('.left-hand', {
+                transform: 'rotate(-40deg)',
+                visibility: 'hidden',
+                duration: 0.3,
+            });
+            gsap.to('.right-hand', {
+                transform: 'rotate(40deg)',
+                visibility: 'hidden',
+                duration: 0.3,
+            });
+        }
     }
     useEffect(() => {
         const input = document.querySelectorAll('.password');
         if (eyeFlag) {
-            showHands();
             if (input.length > 0) { // Check if there are any password inputs
                 input[0].setAttribute('type', 'text'); // Change the type of the first password input to text
             }
+            showHands();
         } else {
             if (input.length > 0) { // Check if there are any password inputs
                 input[0].setAttribute('type', 'password'); // Change the type of the first password input to text
-            } else {
-                console.log("No password");
             }
-
             hideHands();
         }
     }, [eyeFlag]);
@@ -76,18 +79,18 @@ const Register = () => {
                 </div>
                 <form>
                     <div className="form-group mt-3">
-                        <input type="text" className="form-control px-4 py-2 rounded-5 bg-light" placeholder='Username' />
+                        <input type="text" className="form-control px-4 py-2 rounded-5" placeholder='Username' />
                     </div>
                     <div className="form-group mt-3">
-                        <input type="email" className="form-control px-4 py-2 rounded-5 bg-light" placeholder='Email' />
+                        <input type="email" className="form-control px-4 py-2 rounded-5" placeholder='Email' />
                     </div>
                     <div className="form-group mt-3 pwd-cover">
-                        <input type="password" className="form-control px-4 py-2 rounded-5 bg-light password" placeholder='Password' onFocus={showHands} onBlur={hideHands} />
+                        <input type="password" className="form-control px-4 py-2 rounded-5 password" placeholder='Password' onFocus={showHands} onBlur={hideHands} />
                         {eyeFlag && <FaEye className='eye-open' onClick={() => setEyeFlag(!eyeFlag)} />}
                         {!eyeFlag && <GoEyeClosed className='eye-close' onClick={() => setEyeFlag(!eyeFlag)} />}
                     </div>
                     <div className="form-group mt-3 pwd-cover">
-                        <input type="text" className="form-control px-4 py-2 rounded-5 bg-light" placeholder='Confirm Password' />
+                        <input type="text" className="form-control px-4 py-2 rounded-5" placeholder='Confirm Password' />
                     </div>
                     <div className="mt-3">
                         <button className="form-control px-4 py-3 rounded-5 btn btn-primary">Register</button>
