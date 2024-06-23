@@ -8,6 +8,7 @@ import { GoEyeClosed } from 'react-icons/go';
 
 const Register = () => {
     const [eyeFlag, setEyeFlag] = useState(false);
+    const [formData, setFormData] = useState(null);
 
     const showHands = () => {
         const input = document.querySelectorAll('.password');
@@ -54,6 +55,17 @@ const Register = () => {
         }
     }, [eyeFlag]);
 
+    const setRegsiterData = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    }
+
+    const handleSubmit = (e) => {
+        // Handle form submission
+        e.preventDefault();
+        console.log(formData);
+    }
+
     return (
         <div className='row mx-0 h-screen justify-content-center align-items-center'>
             <div className="col-lg-4 col-10">
@@ -77,20 +89,17 @@ const Register = () => {
                     <div>Or</div>
                     <div className='right-bar border'></div>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="form-group mt-3">
-                        <input type="text" className="form-control px-4 py-2 rounded-5" placeholder='Username' />
+                        <input type="text" className="form-control px-4 py-2 rounded-5" name="name" placeholder='Name' onChange={setRegsiterData} />
                     </div>
                     <div className="form-group mt-3">
-                        <input type="email" className="form-control px-4 py-2 rounded-5" placeholder='Email' />
+                        <input type="email" className="form-control px-4 py-2 rounded-5" name="email" placeholder='Email' onChange={setRegsiterData} />
                     </div>
                     <div className="form-group mt-3 pwd-cover">
-                        <input type="password" className="form-control px-4 py-2 rounded-5 password" placeholder='Password' onFocus={showHands} onBlur={hideHands} />
+                        <input type="password" className="form-control px-4 py-2 rounded-5 password" name="password" placeholder='Password' onChange={setRegsiterData} onFocus={showHands} onBlur={hideHands} />
                         {eyeFlag && <FaEye className='eye-open' onClick={() => setEyeFlag(!eyeFlag)} />}
                         {!eyeFlag && <GoEyeClosed className='eye-close' onClick={() => setEyeFlag(!eyeFlag)} />}
-                    </div>
-                    <div className="form-group mt-3 pwd-cover">
-                        <input type="text" className="form-control px-4 py-2 rounded-5" placeholder='Confirm Password' />
                     </div>
                     <div className="mt-3">
                         <button className="form-control px-4 py-3 rounded-5 btn btn-primary">Register</button>
