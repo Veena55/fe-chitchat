@@ -6,55 +6,52 @@ import { FcGoogle } from 'react-icons/fc';
 import './Register.css';
 import { FaEye } from 'react-icons/fa';
 import { GoEyeClosed } from 'react-icons/go';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
-    const navigate = useNavigate();
     const [eyeFlag, setEyeFlag] = useState(false);
-    const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+    const [formData, setFormData] = useState(false);
+    const navigate = useNavigate();
 
     const showHands = () => {
-        const input = document.querySelectorAll('.password');
-        if (input[0].attributes['type'].value == 'text' || document.activeElement.classList.contains('password')) {
-            gsap.to('.left-hand', {
-                transform: 'rotate(20deg)',
-                visibility: 'visible',
-                duration: 0.5,
-            });
-            gsap.to('.right-hand', {
-                transform: 'rotate(-20deg)',
-                visibility: 'visible',
-                duration: 0.5,
-            });
-        }
+        gsap.to('.left-hand', {
+            y: 0,
+            transform: 'rotate(20deg)',
+            display: "block"
+        });
+        gsap.to('.right-hand', {
+            y: 0,
+            transform: 'rotate(-20deg)',
+            display: "block"
+        });
     }
     const hideHands = () => {
-        const input = document.querySelectorAll('.password');
-        if (input[0].attributes['type'].value == 'password' && !document.activeElement.classList.contains('password')) {
-            gsap.to('.left-hand', {
-                transform: 'rotate(-40deg)',
-                visibility: 'hidden',
-                duration: 0.3,
-            });
-            gsap.to('.right-hand', {
-                transform: 'rotate(40deg)',
-                visibility: 'hidden',
-                duration: 0.3,
-            });
-        }
+        gsap.to('.left-hand', {
+            display: 'none',
+            y: 120,
+            transform: 'rotate(20deg)',
+        });
+        gsap.to('.right-hand', {
+            display: 'none',
+            y: 120,
+            transform: 'rotate(-20deg)',
+        });
     }
     useEffect(() => {
         const input = document.querySelectorAll('.password');
         if (eyeFlag) {
+            showHands();
             if (input.length > 0) { // Check if there are any password inputs
                 input[0].setAttribute('type', 'text'); // Change the type of the first password input to text
             }
-            showHands();
         } else {
             if (input.length > 0) { // Check if there are any password inputs
                 input[0].setAttribute('type', 'password'); // Change the type of the first password input to text
+            } else {
+                console.log("No password");
             }
+
             hideHands();
         }
     }, [eyeFlag]);
