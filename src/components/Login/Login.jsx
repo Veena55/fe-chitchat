@@ -5,9 +5,13 @@ import { FcGoogle } from 'react-icons/fc';
 import './Login.css';
 import { FaEye } from 'react-icons/fa';
 import { GoEyeClosed } from 'react-icons/go';
+import { useSearchParams } from 'react-router-dom';
 
 const Login = () => {
     const [eyeFlag, setEyeFlag] = useState(false);
+    const [searchParams] = useSearchParams();
+    let userExists = searchParams.get('exists');
+    console.log(userExists);
 
     const showHands = () => {
         gsap.to('.left-hand', {
