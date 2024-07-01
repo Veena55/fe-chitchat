@@ -1,0 +1,54 @@
+.chat-area {
+    background: #EAF1F9;
+    height: 100vh;
+    overflow: overlay;
+}
+
+.active {
+    color: #3B71CA !important;
+}
+
+.search-bar {
+    background: #EAF1F9;
+}
+
+.search-bar_input {
+    outline: none;
+}
+
+.search-bar_input:focus {
+    outline: none;
+}
+
+.notification_count {
+    width: 18px;
+    text-align: center;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    right: -50% !important;
+    top: 20%;
+    z-index: 50;
+}
+
+.chit-chat_list {
+    height: 100vh;
+    overflow: overlay;
+}
+
+/* Total scrollbar width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Scrollbar handle */
+::-webkit-scrollbar-thumb {
+    background: #afb8f9;
+    border-radius: 6px;
+}
