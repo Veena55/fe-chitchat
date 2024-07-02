@@ -10,7 +10,7 @@ const ChatNav = () => {
     }
     return (
         <div className='row mx-0'>
-            <div className="col-12 py-2 d-flex justify-content-between">
+            <div className="col-12 py-2 d-flex justify-content-between chat-nav">
                 <div>
                     <h4 className='text-primary fs-bold text-capitalize'>{activeElement}</h4>
                 </div>

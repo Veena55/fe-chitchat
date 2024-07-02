@@ -8,6 +8,11 @@
     color: #3B71CA !important;
 }
 
+.chat-profile-card,
+.chat-nav {
+    height: 10vh;
+}
+
 .search-bar {
     background: #EAF1F9;
 }
@@ -51,4 +56,12 @@
 ::-webkit-scrollbar-thumb {
     background: #afb8f9;
     border-radius: 6px;
+}
+
+.width-content {
+    width: max-content;
+}
+
+input:focus {
+    outline: none;
 }
