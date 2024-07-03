@@ -22,7 +22,7 @@ const ChatNav = () => {
                     <FaUserPlus className={`text-danger mx-1 ${activeElement == 'invite' && 'active'}`} onClick={() => setActiveClass('invite')} size={20} />
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
 export default ChatNav
