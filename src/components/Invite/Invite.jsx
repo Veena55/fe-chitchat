@@ -7,7 +7,7 @@ const Invite = () => {
             <div className="col-6 mx-auto">
                 <h5 className='text-primary'>Send Invite link to your friend</h5>
                 <div className="form-group">
-                    <input type="email" className="form-control" readOnly />
+                    <input type="email" className="form-control bg-white rounded-5" readOnly />
                 </div>
                 <div className='mt-2 text-end'>
                     <button className="btn btn-primary">Send Invite</button>
