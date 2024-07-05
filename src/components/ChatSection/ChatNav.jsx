@@ -3,7 +3,6 @@ import { BsChatDots } from 'react-icons/bs'
 import { LuContact } from 'react-icons/lu'
 import './chat.css';
 import { FaUserFriends, FaUserPlus } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 
 const ChatNav = () => {
     const [activeElement, setActiveElement] = useState(['chats']);
@@ -20,8 +19,7 @@ const ChatNav = () => {
                     <BsChatDots className={`text-secondary mx-1 ${activeElement == 'chats' && 'active'}`} onClick={() => setActiveClass('chats')} size={20} />
                     <LuContact className={`text-secondary mx-1 ${activeElement == 'contacts' && 'active'}`} onClick={() => setActiveClass('contacts')} size={20} />
                     <FaUserFriends className={`text-secondary mx-1 ${activeElement == 'groups' && 'active'}`} onClick={() => setActiveClass('groups')} size={20} />
-                    {/* <FaUserPlus className={`text-danger mx-1 ${activeElement == 'invite' && 'active'}`} onClick={() => setActiveClass('invite')} size={20} /> */}
-                    <Link to='/invite'><FaUserPlus className={`text-danger mx-1 ${activeElement == 'invite' && 'active'}`} onClick={() => setActiveClass('invite')} size={20} /></Link>
+                    <FaUserPlus className={`text-danger mx-1 ${activeElement == 'invite' && 'active'}`} onClick={() => setActiveClass('invite')} size={20} />
                 </div>
             </div>
         </div>
