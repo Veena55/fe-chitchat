@@ -5,11 +5,15 @@ import { FcGoogle } from 'react-icons/fc';
 import './Login.css';
 import { FaEye } from 'react-icons/fa';
 import { GoEyeClosed } from 'react-icons/go';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import axios from '../../utils/axiosConfig';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const [eyeFlag, setEyeFlag] = useState(false);
+    const [formData, setFormdata] = useState({ email: "", password: "" });
     const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
     let userExists = searchParams.get('exists');
     console.log(userExists);
 
@@ -54,6 +58,30 @@ const Login = () => {
         }
     }, [eyeFlag]);
 
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('/auth/signin', {
+                email: formData.email,
+                password: formData.password
+            });
+            console.log(response.data.token);
+            if (response.status == 200) {
+                toast.success("Login Successfully!!");
+                localStorage.setItem('token', response.data.token);
+                navigate("/home");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const handleInput = (e) => {
+        const { name, value } = e.target;
+        setFormdata({ ...formData, [name]: value });
+        // console.log(formData);
+    }
+    console.log(formData);
     return (
         <div className='row mx-0 h-screen justify-content-center align-items-center'>
             <div className="col-lg-4 col-10">
@@ -69,20 +97,13 @@ const Login = () => {
                     <h2>Welcome Back</h2>
                     <p className='fw-semibold mt-2'>Don't have an account? <a href='#' className='text-primary'>Sign Up</a> here</p>
                 </div>
-                <div className='mt-4'>
-                    <button className='btn form-control p-2 bg-white border rounded-5 shadow-sm d-flex  justify-content-center align-items-center gap-3 text-capitalize fs-6'><FcGoogle size={20} /> Continue With Google</button>
-                </div>
-                <div className="d-flex gap-2 align-items-center my-3">
-                    <div className='left-bar border'></div>
-                    <div>Or</div>
-                    <div className='right-bar border'></div>
-                </div>
-                <form>
+
+                <form onSubmit={handleLogin}>
                     <div className="form-group">
-                        <input type="email" className="form-control px-4 py-2 rounded-5 bg-light" placeholder='Email' />
+                        <input type="email" className="form-control px-4 py-2 rounded-5 bg-light" name="email" value={formData.email} placeholder='Email' onChange={handleInput} />
                     </div>
                     <div className="form-group mt-3 pwd-cover">
-                        <input type="password" className="form-control px-4 py-2 rounded-5 bg-light" placeholder='Password' onFocus={showHands} onBlur={hideHands} />
+                        <input type="password" className="form-control px-4 py-2 rounded-5 bg-light" name="password" value={formData.password} placeholder='Password' onChange={handleInput} onFocus={showHands} onBlur={hideHands} />
                         {eyeFlag && <FaEye className='eye-open' onClick={() => setEyeFlag(!eyeFlag)} />}
                         {!eyeFlag && <GoEyeClosed className='eye-close' onClick={() => setEyeFlag(!eyeFlag)} />}
                     </div>

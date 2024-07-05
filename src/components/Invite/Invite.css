@@ -1,3 +1,7 @@
 .bg-light-blue {
     background: #EAF1F9;
 }
+
+.invite_link:focus {
+    outline: none !important;
+}
