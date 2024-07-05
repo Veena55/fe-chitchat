@@ -5,10 +5,10 @@ import SentMsg from './SentMsg';
 import RecieveMsg from './RecieveMsg';
 import MessageBox from './MessageBox';
 
-const ChatRoom = () => {
+const ChatRoom = ({ profile }) => {
     return (
         <div className='mx-0 w-100'>
-            <ChatProfile profile={{ img: assets.girl, name: "Veena Rao" }} />
+            <ChatProfile profile={{ img: assets.girl, name: profile.name }} />
             <div className="d-flex flex-column justify-content-between" >
                 <div style={{ height: "80vh", overflow: "overlay" }}>
                     <SentMsg sendMsg={"Hello!!"} />

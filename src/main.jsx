@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Navbar />
       <Routes>
         <Route path='/signup' element={<App />}></Route>
-        <Route path='/home' element={<Home />}></Route>
+        <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/verify' element={<Verify />}></Route>
         <Route path='/invite' element={<Invite />}></Route>

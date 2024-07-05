@@ -31,7 +31,6 @@ const Invite = () => {
     }
 
     const sendWhatsAppMessage = () => {
-        console.log("hi");
         try {
             const message = encodeURIComponent(`Hello! Join me on Chit-Chat at http://localhost:5173/signup?ref=${user}`);
             const whatsappUrl = `https://wa.me/?text=${message}`;
