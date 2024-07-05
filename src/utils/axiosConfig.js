@@ -1,22 +1,31 @@
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// Set base URL for Axios
-axios.defaults.baseURL = 'http://localhost:7000';
+
+axios.defaults.baseURL = "http://localhost:7000"
+
 
 // Request interceptor
-// axios.interceptors.request.use((config) => {
-//     return config;
-// }, (error) => {
-//     return Promise.reject(error);
-// })
+axios.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token');
+        console.log(token);
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+)
 
 
 // Response interceptor
 axios.interceptors.response.use(
     function (response) {
         console.log('Response:', response);
-        toast.success("User created!!");
+        // toast.success("User created!!");
         return response;
     },
     function (error) {

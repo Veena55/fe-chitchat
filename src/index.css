@@ -20,7 +20,8 @@ body {
   font-family: "Outfit", sans-serif !important;
   background-color: var(--color-bg) !important;
   color: var(--color-fg) !important;
-  overflow: hidden;
+  height: 100vh;
+  /* overflow: hidden; */
 }
 
 input {
