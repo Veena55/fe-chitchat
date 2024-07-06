@@ -34,13 +34,15 @@ const Home = () => {
                 </div>
                 <div className='chit-chat_list'>
                     {isLoading && <p className='text-center text-primary'>Loading....</p>}
-                    {friendList.length > 0 ? friendList.map((friend, index) => <ChatCard
-                        key={index}
-                        name={friend.user.name}
-                        bio={!friend.user.bio ? 'No Bio' : friend.user.bio}
-                        date=''
-                        onClick={() => { setUserProfile({ name: friend.user.name }) }}
-                    />
+                    {friendList.length > 0 ? friendList.map((friend, index) => {
+                        return <ChatCard
+                            key={index}
+                            name={friend.friend.name}
+                            bio={!friend.user.bio ? 'No Bio' : friend.user.bio}
+                            date=''
+                            onClick={() => { setUserProfile({ name: friend.friend.name }) }}
+                        />
+                    }
                     ) : <p>No Friends</p>}
 
                 </div>
