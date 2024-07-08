@@ -6,8 +6,9 @@ import { FcGoogle } from 'react-icons/fc';
 import './Register.css';
 import { FaEye } from 'react-icons/fa';
 import { GoEyeClosed } from 'react-icons/go';
-import { ToastContainer } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
+import { GetPath } from '../../routes/Path';
 
 const Register = () => {
     const [eyeFlag, setEyeFlag] = useState(false);
@@ -70,8 +71,12 @@ const Register = () => {
             email: formData.email,
             password: formData.password
         });
+        if (response.status === 201)
+            toast.success('Registered Successfully');
         if (!response.data.is_email_verified) {
-            navigate('/login');
+            navigate(GetPath('verify'));
+        } else if (response.data.is_email_verified) {
+            navigate(GetPath('login'));
         }
     }
 
@@ -88,17 +93,17 @@ const Register = () => {
                         <div className='right-hand'></div>
                     </div>
                     <div className="mt-3 text-center">
-                        <h2>Welcome Back</h2>
-                        <p className='fw-semibold mt-2'>Already have an account? <a href='#' className='text-primary'>Sign In</a> here</p>
+                        <h2>Welcome</h2>
+                        <p className='fw-semibold mt-2'>Already have an account? <Link to={GetPath('login')} className='text-primary'>Sign In</Link> here</p>
                     </div>
-                    <div className='mt-4'>
+                    {/* <div className='mt-4'>
                         <button className='btn form-control p-2 bg-white border rounded-5 shadow-sm d-flex justify-content-center align-items-center gap-3 text-capitalize fs-6'><FcGoogle size={20} /> Register With Google</button>
                     </div>
                     <div className="d-flex gap-2 align-items-center my-3">
                         <div className='left-bar border'></div>
                         <div>Or</div>
                         <div className='right-bar border'></div>
-                    </div>
+                    </div> */}
                     <form onSubmit={handleSubmit}>
                         <div className="form-group mt-3">
                             <input type="text" className="form-control px-4 py-2 rounded-5" name="name" placeholder='Name' onChange={setRegsiterData} />

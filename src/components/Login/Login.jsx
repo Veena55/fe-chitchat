@@ -5,9 +5,10 @@ import { FcGoogle } from 'react-icons/fc';
 import './Login.css';
 import { FaEye } from 'react-icons/fa';
 import { GoEyeClosed } from 'react-icons/go';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import axios from '../../utils/axiosConfig';
 import { toast } from 'react-toastify';
+import { GetPath } from '../../routes/Path';
 
 const Login = () => {
     const [eyeFlag, setEyeFlag] = useState(false);
@@ -69,10 +70,11 @@ const Login = () => {
             if (response.status == 200) {
                 toast.success("Login Successfully!!");
                 localStorage.setItem('token', response.data.token);
-                navigate("/home");
+                navigate(GetPath('home'));
             }
         } catch (error) {
             console.log(error);
+            toast.error(error.response.data.msg);
         }
     }
 
@@ -95,7 +97,7 @@ const Login = () => {
                 </div>
                 <div className="mt-3 text-center">
                     <h2>Welcome Back</h2>
-                    <p className='fw-semibold mt-2'>Don't have an account? <a href='#' className='text-primary'>Sign Up</a> here</p>
+                    <p className='fw-semibold mt-2'>Don't have an account? <Link to={GetPath('signup')} className='text-primary'>Sign Up</Link> here</p>
                 </div>
 
                 <form onSubmit={handleLogin}>
@@ -111,6 +113,9 @@ const Login = () => {
                         <button className="form-control px-4 py-3 rounded-5 btn btn-primary">Login </button>
                     </div>
                 </form>
+                <div className="mt-3">
+                    <p className='fw-semibold mt-2'>Email not verified? <Link to={GetPath('verify')} className='text-primary'>Click Here</Link></p>
+                </div>
             </div>
         </div >
     )
