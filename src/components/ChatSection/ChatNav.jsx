@@ -20,7 +20,6 @@ const ChatNav = () => {
                     <BsChatDots className={`text-secondary mx-1 ${activeElement == 'chats' && 'active'}`} onClick={() => setActiveClass('chats')} size={20} />
                     <LuContact className={`text-secondary mx-1 ${activeElement == 'contacts' && 'active'}`} onClick={() => setActiveClass('contacts')} size={20} />
                     <FaUserFriends className={`text-secondary mx-1 ${activeElement == 'groups' && 'active'}`} onClick={() => setActiveClass('groups')} size={20} />
-
                 </div>
             </div>
         </div>

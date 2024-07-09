@@ -1,7 +1,7 @@
 import React from 'react'
 import assets from '../../assets/assets';
 
-const ChatCard = ({ name, bio, date }) => {
+const ChatCard = ({ name, bio, date, onClick }) => {
     return (
         <>
             <div className="chat-card row mx-0">
@@ -12,7 +12,7 @@ const ChatCard = ({ name, bio, date }) => {
                                 <img src={assets.girl} alt="user" className="img-fluid rounded-circle p-2 border border-primary font-bold" width={60} />
                             </div>
                             <div>
-                                <div className="chat-card__header__name fw-semibold text-capitalize">{name}</div>
+                                <div className="chat-card__header__name fw-semibold text-capitalize" onClick={onClick}>{name}</div>
                                 <div className="chat-card__header__bio text-primary fst-italic">{bio}</div>
                             </div>
                         </div>

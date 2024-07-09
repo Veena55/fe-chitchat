@@ -13,6 +13,10 @@
     height: 10vh;
 }
 
+.chat-card__header {
+    cursor: pointer;
+}
+
 .search-bar {
     background: #EAF1F9;
 }
