@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { GetPath } from "../routes/Path";
 
 axios.defaults.baseURL = "http://localhost:7000"
 
@@ -20,6 +21,11 @@ axios.interceptors.request.use(
     }
 )
 
+function is_made_exception() {
+    const list = [GetPath('login')];
+    return list.some(value => location.href.includes(value));
+}
+
 
 // Response interceptor
 axios.interceptors.response.use(
@@ -29,20 +35,28 @@ axios.interceptors.response.use(
         return response;
     },
     function (error) {
+        console.log(error);
         if (error.response) {
-            if (error.response.status == 429) {
-                toast.error(error.response.data);
-            } else if (error.response.status == 409) {
-                if (!error.response.data.message.is_email_verified) {
-                    toast.error("Please Verify Your Mail");
-                    window.location.href = '/login?exists=true';
+            if (error.response.status === 401) {
+                if (!is_made_exception()) {
+                    toast.error('Please login to continue with the application!');
+                    location.replace(GetPath('login'));
                 }
-                toast.error(error.response.data.message.msg);
-            } else if (error.response.data.errors.length > 0) {
+            } else if (error.response.status == 429) {
+                toast.error(error.response.data);
+                // } else if (error.response.status == 409) {
+                //     if (!error.response.data.message.is_email_verified) {
+                //         toast.error("Please Verify Your Mail");
+                //         window.location.href = '/login?exists=true';
+                //     }
+                //     toast.error(error.response.data.message.msg);
+            } else if (error.response.data.errors && error.response.data.errors.length > 0) {
                 (error.response.data.errors).map((ele) => {
                     console.log(ele);
                     return toast.error(ele.msg);
                 })
+            } else {
+                toast.error(error.response.data.message);
             }
         }
         return Promise.reject(error);

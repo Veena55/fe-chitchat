@@ -1,18 +1,22 @@
 import axios from 'axios';
 import React, { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { GetPath } from '../../routes/Path';
 
 const Verify = () => {
     const [flag, setFlag] = useState(true);
-    const email = useRef();
-    const otp = useRef();
+    const email = useRef(null);
+    const otp = useRef(null);
+    const navigate = useNavigate();
     const sendMail = async () => {
         console.log("Clicked!!", email.current.value);
         const response = await axios.post(`http://localhost:7000/auth/send-mail`, {
             email: email.current.value
         }, { withCredentials: true });
 
-        setFlag(false);
         if (response.status == 200) {
+            email.current.value = null;
+            setFlag(false);
         }
     }
     const verifyOTP = async () => {
@@ -21,7 +25,7 @@ const Verify = () => {
             otp: otp.current.value
         }, { withCredentials: true });
         if (response.status == 200) {
-            window.location.href = "/login";
+            navigate(GetPath('login'));
         }
     }
     return (
@@ -47,10 +51,10 @@ const Verify = () => {
                                 <h3 className='py-3'>Verify With OTP</h3>
                             </div>
                             <div className="form-group">
-                                <input type="text" className="form-control px-4 py-2 rounded-5 bg-light" ref={otp} placeholder='Enter OTP' />
+                                <input type="tel" className="form-control px-4 py-2 rounded-5 bg-light" ref={otp} placeholder='Enter OTP' />
                             </div>
                             <div className="mt-3">
-                                <button className="form-control px-4 py-2 rounded-5 btn btn-primary fs-6" defautlValue="" onClick={verifyOTP}>Verify OTP </button>
+                                <button className="form-control px-4 py-2 rounded-5 btn btn-primary fs-6" onClick={verifyOTP}>Verify OTP </button>
                             </div>
                         </>}
 
