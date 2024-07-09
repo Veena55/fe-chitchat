@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <ToastContainer />
-      <Navbar />
+      <ToggleButton />
       <Routes>
         {/* <Route path='/signup' element={<App />} key="signup"></Route>
         <Route path='/home' element={<Home />} key="home"></Route>
@@ -32,5 +32,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </BrowserRouter>
   </QueryClientProvider>
 
+>>>>>>>>> Temporary merge branch 2
   // </React.StrictMode>,
 )

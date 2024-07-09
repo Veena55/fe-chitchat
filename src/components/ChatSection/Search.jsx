@@ -27,6 +27,7 @@ const Search = () => {
             console.log(e.target.value);
         }
     }
+    console.log(friendList);
 
     return (
         <div className='row mx-0'>
