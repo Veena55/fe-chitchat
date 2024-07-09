@@ -4,13 +4,6 @@ export const fetchFriendList = async () => {
     return data;
 }
 
-import React, { useEffect, useState } from 'react'
-//Fetch API
-export const fetchFriendList = async () => {
-    const { data } = await axios.get("/friend/all");
-    return data;
-}
-
 import React, { useState } from 'react'
 import ChatCard from '../../components/ChatSection/ChatCard'
 import ChatNav from '../../components/ChatSection/ChatNav'
