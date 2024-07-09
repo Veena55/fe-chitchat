@@ -1,14 +1,14 @@
-export const fetchFreinds = async (searchText) => {
-    const { data } = await axios.post(`/search/friends`, { searchText });
-    console.log(data);
-    return data;
-}
-
 import React, { useState } from 'react'
 import './chat.css';
 import SearchBox from './SearchBox';
 import { useQuery } from '@tanstack/react-query';
-import axios from '../../utils/axiosConfig';
+import axios from 'axios';
+// import axios from '../../utils/axiosConfig';
+
+export const fetchFreinds = async (searchText) => {
+    const { data } = await axios.post(`/search/friends`, { searchText });
+    return data;
+}
 
 const Search = () => {
     // const friendList = [{ name: "Veena", img: "" }, { name: "Vidya", img: "" }, { name: "Vidya", img: "" }];
@@ -16,16 +16,17 @@ const Search = () => {
     const { data: friendList = [], isLoading, error } = useQuery({
         queryKey: ['friends', searchText],
         queryFn: () => fetchFreinds(searchText),
-        enabled: searchText.length > 3,
+        enabled: searchText.length >= 3,
     });
 
     const handleSearch = async (e) => {
-        if (e.target.value.length > 3) {
-            const search = e.target.value;
-            setSearchText(search);
-        } else {
-            console.log(e.target.value);
-        }
+        setSearchText(e.target.value);
+        // if (e.target.value.length > 3) {
+        //     const search = e.target.value;
+        //     setSearchText(search);
+        // } else {
+        //     console.log(e.target.value);
+        // }
     }
     console.log(friendList);
 
@@ -33,7 +34,7 @@ const Search = () => {
         <div className='row mx-0'>
             <div className="col-12">
                 <div className="input-group search-bar mb-2 rounded-5">
-                    <input type="text" className='search-bar_input border-0 w-100 px-3 py-2 text-primary' placeholder='Search here...' onChange={handleSearch} />
+                    <input type="search" className='search-bar_input border-0 w-100 px-3 py-2 text-primary' placeholder='Search here...' onChange={handleSearch} />
                 </div>
             </div>
 

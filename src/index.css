@@ -37,3 +37,9 @@ h1 {
 .h-screen {
   height: 100vh;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
