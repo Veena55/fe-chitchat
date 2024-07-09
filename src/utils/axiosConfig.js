@@ -10,7 +10,7 @@ axios.defaults.baseURL = "http://localhost:7000"
 axios.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('token');
-        console.log(token);
+        // console.log(token);
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }
@@ -44,12 +44,6 @@ axios.interceptors.response.use(
                 }
             } else if (error.response.status == 429) {
                 toast.error(error.response.data);
-                // } else if (error.response.status == 409) {
-                //     if (!error.response.data.message.is_email_verified) {
-                //         toast.error("Please Verify Your Mail");
-                //         window.location.href = '/login?exists=true';
-                //     }
-                //     toast.error(error.response.data.message.msg);
             } else if (error.response.data.errors && error.response.data.errors.length > 0) {
                 (error.response.data.errors).map((ele) => {
                     console.log(ele);
@@ -62,6 +56,3 @@ axios.interceptors.response.use(
         return Promise.reject(error);
     }
 );
-
-
-export default axios;

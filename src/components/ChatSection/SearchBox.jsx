@@ -1,4 +1,5 @@
 import React from 'react'
+import { RiUserAddFill } from 'react-icons/ri'
 
 const SearchBox = ({ friends }) => {
     return (
@@ -8,7 +9,7 @@ const SearchBox = ({ friends }) => {
                 <div className="col-12 p-0 bg-white shadow-sm bg-white z-50">
                     <div className='p-2 d-flex justify-content-between align-items-center'>
                         <p className='mb-0'>{friend.friend.name}</p>
-                        <button className='border-0 bg-transparent text-primary'>Send Invite</button>
+                        <button className='border-0 bg-transparent text-primary'><RiUserAddFill /></button>
                     </div>
                 </div>
             </div>

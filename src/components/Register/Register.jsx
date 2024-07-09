@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from '../../utils/axiosConfig';
 import gsap from 'gsap';
 import assets from '../../assets/assets';
 import { FcGoogle } from 'react-icons/fc';
@@ -9,6 +8,7 @@ import { GoEyeClosed } from 'react-icons/go';
 import { toast, ToastContainer } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { GetPath } from '../../routes/Path';
+import axios from 'axios';
 
 const Register = () => {
     const [eyeFlag, setEyeFlag] = useState(false);

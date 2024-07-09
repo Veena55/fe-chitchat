@@ -1,4 +1,3 @@
-import axios from '../../utils/axiosConfig'
 
 export const fetchUserId = async () => {
     const { data } = await axios.get('/invite/user');
@@ -9,6 +8,7 @@ import React, { useRef } from 'react'
 import './Invite.css'
 import { useQuery } from '@tanstack/react-query';
 import { BsShareFill } from 'react-icons/bs';
+import axios from 'axios';
 
 const Invite = () => {
     const inviteLink = useRef(null);
