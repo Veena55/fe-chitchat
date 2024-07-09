@@ -43,8 +43,7 @@
 }
 
 .chit-chat_list {
-    height: 100vh;
-    overflow: overlay;
+    flex: auto;
 }
 
 /* Total scrollbar width */

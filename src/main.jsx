@@ -12,6 +12,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // import Invite from './components/Invite/Invite.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import { Path } from './routes/Path.jsx';
+import './utils/axiosConfig.js';
+
 // Create a new QueryClient instance
 const queryClient = new QueryClient();
 

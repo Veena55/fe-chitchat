@@ -6,9 +6,9 @@ import './Login.css';
 import { FaEye } from 'react-icons/fa';
 import { GoEyeClosed } from 'react-icons/go';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import axios from '../../utils/axiosConfig';
 import { toast } from 'react-toastify';
 import { GetPath } from '../../routes/Path';
+import axios from 'axios';
 
 const Login = () => {
     const [eyeFlag, setEyeFlag] = useState(false);

@@ -1,0 +1,13 @@
+.home_container {
+    flex: auto;
+}
+
+.list_area,
+.chat_area {
+    display: flex;
+    flex-direction: column;
+}
+
+.empty_message {
+    flex: auto;
+}
