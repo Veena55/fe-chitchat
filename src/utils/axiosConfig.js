@@ -44,12 +44,6 @@ axios.interceptors.response.use(
                 }
             } else if (error.response.status == 429) {
                 toast.error(error.response.data);
-                // } else if (error.response.status == 409) {
-                //     if (!error.response.data.message.is_email_verified) {
-                //         toast.error("Please Verify Your Mail");
-                //         window.location.href = '/login?exists=true';
-                //     }
-                //     toast.error(error.response.data.message.msg);
             } else if (error.response.data.errors && error.response.data.errors.length > 0) {
                 (error.response.data.errors).map((ele) => {
                     console.log(ele);
