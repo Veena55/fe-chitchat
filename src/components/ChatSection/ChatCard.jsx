@@ -1,7 +1,7 @@
 import React from 'react'
 import assets from '../../assets/assets';
 
-const ChatCard = ({ name, bio, date, onClick }) => {
+const ChatCard = ({ currentUser, currentTargtedUser, name, bio, date, onClick }) => {
     return (
         <>
             <div className="chat-card row mx-0">

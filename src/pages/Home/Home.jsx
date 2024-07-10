@@ -40,8 +40,10 @@ const Home = () => {
                             key={index}
                             name={friend.friend.name}
                             bio={!friend.user.bio ? 'No Bio' : friend.user.bio}
+                            currentUser={friend.user && friend.user}
+                            currentTargtedUser={!friend.friend._id ? '' : friend.friend._id}
                             date=''
-                            onClick={() => { setUserProfile({ name: friend.friend.name }) }}
+                            onClick={() => { setUserProfile({ currentUser: friend.user, targetedUser: friend.friend._id, name: friend.friend.name }) }}
                         />
                     }
                     ) : <p>No Friends</p>}

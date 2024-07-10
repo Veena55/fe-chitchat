@@ -3,6 +3,7 @@ import { BiChat } from 'react-icons/bi'
 import ChatRoom from './ChatRoom/ChatRoom'
 
 const ChatArea = ({ profile }) => {
+    console.log(profile);
     return (
         <>
             <div className="position-relative chat-area">

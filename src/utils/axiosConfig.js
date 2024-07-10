@@ -10,7 +10,6 @@ axios.defaults.baseURL = "http://localhost:7000"
 axios.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('token');
-        // console.log(token);
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }
@@ -31,7 +30,6 @@ function is_made_exception() {
 axios.interceptors.response.use(
     function (response) {
         console.log('Response:', response);
-        // toast.success("User created!!");
         return response;
     },
     function (error) {
