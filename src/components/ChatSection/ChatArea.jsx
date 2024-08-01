@@ -9,9 +9,6 @@ const ChatArea = ({ profile }) => {
             <div className="position-relative chat-area">
                 <div className='position-absolute start-0 end-0'>
                     <ChatRoom profile={profile} />
-                    {/* <div className="col-12 d-flex justify-content-center align-items-center">
-                    <BiChat className='text-primary' size={50} />
-                </div> */}
                 </div>
             </div>
         </>

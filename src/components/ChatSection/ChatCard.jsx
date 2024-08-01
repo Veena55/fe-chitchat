@@ -1,18 +1,18 @@
 import React from 'react'
 import assets from '../../assets/assets';
 
-const ChatCard = ({ currentUser, currentTargtedUser, name, bio, date, onClick }) => {
+const ChatCard = ({ name, bio, date, onClick }) => {
     return (
         <>
             <div className="chat-card row mx-0">
                 <div className="col-12 mx-auto py-2">
-                    <div className="chat-card__header d-flex justify-content-between align-items-start">
+                    <div className="chat-card__header d-flex justify-content-between align-items-start" onClick={onClick}>
                         <div className='d-flex gap-4 align-items-center'>
                             <div className="chat-card__header__img">
                                 <img src={assets.girl} alt="user" className="img-fluid rounded-circle p-2 border border-primary font-bold" width={60} />
                             </div>
                             <div>
-                                <div className="chat-card__header__name fw-semibold text-capitalize" onClick={onClick}>{name}</div>
+                                <div className="chat-card__header__name fw-semibold text-capitalize">{name}</div>
                                 <div className="chat-card__header__bio text-primary fst-italic">{bio}</div>
                             </div>
                         </div>

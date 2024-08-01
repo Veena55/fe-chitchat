@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ChatCard from '../../components/ChatSection/ChatCard'
 import ChatNav from '../../components/ChatSection/ChatNav'
 import Search from '../../components/ChatSection/Search'
@@ -8,6 +8,8 @@ import { toast } from 'react-toastify'
 import { BiChat } from 'react-icons/bi';
 import axios from 'axios';
 import "./Home.css"
+import { useDispatch, useSelector } from 'react-redux'
+import { updateFriendList } from '../../redux/actions'
 
 //Fetch API
 export const fetchFriendList = async () => {
@@ -16,11 +18,19 @@ export const fetchFriendList = async () => {
 }
 
 const Home = () => {
-    const [userProfile, setUserProfile] = useState({});
-    const { data: friendList = [], isLoading, error } = useQuery({
+    const [userProfile, setUserProfile] = useState(null);
+    const friendList = useSelector(state => state.friends.list);
+    const dispatch = useDispatch();
+    const { data, isLoading, error } = useQuery({
         queryKey: ['friendList'],
-        queryFn: fetchFriendList
+        queryFn: fetchFriendList,
+
     });
+    useEffect(() => {
+        if (data) {
+            dispatch(updateFriendList(data))
+        }
+    }, [data])
 
     if (error) {
         return toast.error("Error loading friend list");
@@ -38,12 +48,10 @@ const Home = () => {
                     {friendList.length > 0 ? friendList.map((friend, index) => {
                         return <ChatCard
                             key={index}
-                            name={friend.friend.name}
+                            name={friend.user.name}
                             bio={!friend.user.bio ? 'No Bio' : friend.user.bio}
-                            currentUser={friend.user && friend.user}
-                            currentTargtedUser={!friend.friend._id ? '' : friend.friend._id}
                             date=''
-                            onClick={() => { setUserProfile({ currentUser: friend.user, targetedUser: friend.friend._id, name: friend.friend.name }) }}
+                            onClick={() => { setUserProfile(friend) }}
                         />
                     }
                     ) : <p>No Friends</p>}
@@ -51,7 +59,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="col-9 p-0 chat_area">
-                {Object.keys(userProfile).length > 0 ? <ChatArea profile={userProfile} /> :
+                {userProfile ? <ChatArea profile={userProfile} /> :
                     <div className="d-flex justify-content-center align-items-center empty_message">
                         <BiChat className='text-primary' size={50} />
                     </div>

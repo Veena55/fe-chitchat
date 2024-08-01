@@ -29,7 +29,7 @@ function is_made_exception() {
 // Response interceptor
 axios.interceptors.response.use(
     function (response) {
-        console.log('Response:', response);
+        // console.log('Response:', response);
         return response;
     },
     function (error) {

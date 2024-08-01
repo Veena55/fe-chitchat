@@ -1,42 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import socketIOClient from 'socket.io-client';
 import RecieveMsg from '../components/ChatSection/ChatRoom/RecieveMsg';
 import SentMsg from '../components/ChatSection/ChatRoom/SentMsg';
 import MessageBox from '../components/ChatSection/ChatRoom/MessageBox';
+import { useSocket } from '../Socket';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { sentMessage } from '../redux/actions';
 
-const ENDPOINT = 'http://localhost:7000';
 
 const Chat = ({ profile }) => {
-    console.log(profile);
-    const [currentUser, setCurrentUser] = useState(profile.currentUser); // Set the current user
-    const [targetedUser, setTargedtUser] = useState(profile.targetedUser); // Set the current user
+    const currentUser = useSelector(state => state.user.profile);
     const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState([]);
-    const socket = socketIOClient(ENDPOINT);
+    const socket = useSocket();
+    const messages = useSelector(state => state.messages.list[profile.user._id] || []);
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        socket.on('receiveMessage', ({ sender, receiver, message }) => {
-            setMessages((prevMessages) => [...prevMessages, { sender, receiver, message }]);
-        });
-
-        return () => {
-            socket.disconnect();
-        };
-    }, []);
-
-    console.log(messages);
 
     const sendMessage = () => {
-        socket.emit('sendMessage', { sender: currentUser, receiver: targetedUser, message });
+        dispatch(sentMessage({ sender: currentUser._id, receiver: profile.user._id, message }));
+        socket.emit('sendMessage', { to: profile.user._id, message });
         setMessage('');
     };
 
     return (
         <div className="d-flex flex-column justify-content-between" >
             <div style={{ height: "80vh", overflow: "overlay" }}>
-                {messages.map((msg, index) => (
-                    (msg.sender === currentUser ? <SentMsg sendMsg={msg.message} /> : <RecieveMsg recieveMsg={msg.message} />)
-                ))}
+                {messages.map((msg, index) => {
+                    return (msg.sender === currentUser._id ? <SentMsg key={index} sendMsg={msg.message} /> : <RecieveMsg key={index} recieveMsg={msg.message} />)
+
+                })}
             </div>
             <div className='pb-2 position-fixed bottom-0 col-9' style={{ width: "" }}>
                 <MessageBox

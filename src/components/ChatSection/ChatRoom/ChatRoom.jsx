@@ -6,8 +6,8 @@ import Chat from '../../../pages/Chat';
 const ChatRoom = ({ profile }) => {
     return (
         <div className='mx-0 w-100'>
-            <ChatProfile profile={{ img: assets.girl, name: profile.name }} />
-            <Chat profile={{ targetedUser: profile.targetedUser, currentUser: profile.currentUser, targetrUserName: profile.name }} />
+            <ChatProfile profile={{ img: assets.girl, name: profile.user.name }} />
+            <Chat profile={profile} />
         </div>
     )
 }
